@@ -14,11 +14,41 @@
     }
     .content{
         background-color: #222224;
-        position: absolute;
-        width: 96.3%;
+        position: relative;
         padding: 5%;
         margin-top:-10%;
-        padding-left: 10%;
+
+        .infos{
+            padding: 2%;
+        }
+        .streamings-desk{
+            padding:15px;
+            img{
+                border-radius: 10px;
+            }
+        }
+        .streamings-mobile{
+            position: fixed;
+         text-align: center;
+            z-index: 100;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            min-height: 130px;
+            padding: 20px;
+            background-color: #2a2a2d;
+            box-shadow: 10px 0px 10px #222224;
+            color: #fff;
+            .stream{
+                margin: auto;
+            }
+            img{
+                
+                border-radius: 10px;
+                margin: auto;
+                margin-top: 15px;
+            }
+        }
         .average{
         
           width: 80px;
@@ -98,3 +128,16 @@
     }
     
 }
+
+@media only screen and (max-width: 414px) {
+
+    .movie-details {
+        .content {
+            background-color: #222224;
+            position: relative;
+            padding: 5%;
+            margin-top: -80%;
+            margin-bottom: 40%;
+        }
+    }
+  }

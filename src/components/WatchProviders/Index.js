@@ -12,7 +12,7 @@ function Index(props) {
         API.get(`movie/${props.movie_id}/watch/providers?api_key=${apiKey}`)
             .then(async response => {
                 // If request is good...
-                
+
                 var lang = language.split('-')
                 setProviders(response.data.results[lang[1]])
                 setLoading(false)
@@ -27,26 +27,41 @@ function Index(props) {
 
     if (loading) {
         return (<small>Loading..</small>)
-    } else if (providers != undefined && providers.flatrate ) {
+    } else if (providers != undefined && providers.flatrate) {
         return (
-            <div>
-                <h6>Stream</h6>
-                <div className='row stream'>
-                    {providers.flatrate.map((item, i) => {
-                        return (
-                            <div className='col-3'>
-                                <img src={'https://image.tmdb.org/t/p/w500/' + item.logo_path} alt={'Watch now on' + item.provider_name} />
-                            </div>
-                        )
-                    })}
-                </div>
+            <>
+                <div className='streamings-desk d-md-block d-lg-block d-lg-block d-none'>
+                    <h6>Streaming available on</h6>
+                    <div className='row stream'>
+                        {providers.flatrate.map((item, i) => {
+                            return (
+                                <div className='col-3'>
+                                    <img src={'https://image.tmdb.org/t/p/w500/' + item.logo_path} alt={'Watch now on' + item.provider_name} />
+                                </div>
+                            )
+                        })}
+                    </div>
 
-            </div>
+                </div>
+                <div className='streamings-mobile d-md-none d-lg-none d-lg-none d-block'>
+                    <h6>Streaming available on</h6>
+                    <div className='row stream d-flex justify-content-center'>
+                        {providers.flatrate.map((item, i) => {
+                            return (
+                                <div className='col-3'>
+                                    <img src={'https://image.tmdb.org/t/p/w500/' + item.logo_path} alt={'Watch now on' + item.provider_name} />
+                                </div>
+                            )
+                        })}
+                    </div>
+
+                </div>
+            </>
         );
     }
-    else{
-        return(<>
-            <small>stream not available in your country</small>
+    else {
+        return (<>
+            <small>Streaming not available in your country</small>
         </>)
     }
 

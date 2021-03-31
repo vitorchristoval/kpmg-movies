@@ -105,20 +105,20 @@ function Index(props) {
                 <div className='content' >
                     <div className='row'>
                         <div className='col-md-4 col-sm-12 poster'>
-
                             <img src={'https://image.tmdb.org/t/p/w500/' + movie.poster_path} />
                             <WatchProviders movie_id={movie.id} />
                         </div>
-                        <div className='col-md-8 col-sm-12'>
+                        <div className='col-md-8 col-sm-12 infos'>
                             <h1>{movie.title} <small className='year'>({new Date(movie.release_date).getFullYear()})</small></h1>
                             <p>{movie.genres.map((g, i) => {
                                 return (<>{g.name + ', '}</>)
                             })}{timeConvert(movie.runtime)}</p>
                             <div className='average'>
-                                <img src='/fav.png' height='40px' />{movie.vote_average * 10} %
-                </div>  <Rating vote_average={movie.vote_average / 2} _id={_id} />
+                                <img src='/fav.png' height='40px' />
+                                {movie.vote_average * 10} %
+                            </div>
+                            <Rating vote_average={movie.vote_average / 2} _id={_id} />
                             <h5>Overview</h5>
-
                             <p>{movie.overview}</p>
 
                             <h5>Cast</h5>
@@ -133,22 +133,24 @@ function Index(props) {
                                     )
                                 })}
                             </Slider>
+                            {movie.production_companies.length > 0 ?
+                                <div>
+                                    <h5>Production Companies</h5>
+                                    <div className='row '>
+                                        {movie.production_companies.map((comp, index) => {
+                                            return (
+                                                <div className=' col-4 col-md-2 production_companies'>
+                                                    <img className='white-filter' src={'https://image.tmdb.org/t/p/w500/' + comp.logo_path} />
+                                                    <h6>{comp.name}</h6>
+                                                    <small>Country : {comp.origin_country}</small>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
 
-                            <div>
-                                <h5>Production Companies</h5>
-                                <div className='row '>
-                                    {movie.production_companies.map((comp, index) => {
-                                        return (
-                                            <div className=' col-sm-2 col-md-2 production_companies'>
-                                                <img className='white-filter' src={'https://image.tmdb.org/t/p/w500/' + comp.logo_path} />
-                                                <h6>{comp.name}</h6>
-                                                <small>Country : {comp.origin_country}</small>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
+                                </div> : null
+                            }
 
-                            </div>
                         </div>
                     </div>
 

@@ -36,7 +36,7 @@ function Index(props) {
         })
         .catch((error) => {
             console.log(error)
-            //Erro acontece normalmente por causa do CORS
+            //Erro acontece normalmente por causa do CORS, quando ativado o CORS o fluxo se finaliza normalmente
             toast.error('An error has occurred, please contact support')
         })
     }
