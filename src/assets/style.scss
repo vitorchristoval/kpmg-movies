@@ -1,0 +1,19 @@
+
+body{
+  background-color: #212529;
+  color: #fff;
+}
+.btn-primary{
+  background-color: #31d07a;
+  border: #31d07a;
+  min-width:200px ;
+  border-radius: 200px;
+  &:hover{
+    background-color: #2e9c62;
+  }
+}
+
+@import '../components/Card/cards';
+@import '../components/Loading/loading';
+@import '../pages/Home/home';
+@import '../pages/Details/details';
