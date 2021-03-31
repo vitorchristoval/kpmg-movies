@@ -120,21 +120,23 @@ function Index(props) {
                             <Rating vote_average={movie.vote_average / 2} _id={_id} />
                             <h5>Overview</h5>
                             <p>{movie.overview}</p>
+                            <div className='mt-5'>
+                                <h5>Cast</h5>
+                                <Slider {...settings}>
+                                    {cast.map((item, i) => {
+                                        return (
+                                            <div className='cast-item'>
+                                                {item.profile_path ? <img src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} /> : <img src={'/fav.png'} />}
+                                                <h6>{item.name}</h6>
+                                                <small>{item.character}</small>
+                                            </div>
+                                        )
+                                    })}
+                                </Slider>
+                            </div>
 
-                            <h5>Cast</h5>
-                            <Slider {...settings}>
-                                {cast.map((item, i) => {
-                                    return (
-                                        <div className='cast-item'>
-                                            {item.profile_path ? <img src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} /> : <img src={'/fav.png'} />}
-                                            <h6>{item.name}</h6>
-                                            <small>{item.character}</small>
-                                        </div>
-                                    )
-                                })}
-                            </Slider>
                             {movie.production_companies.length > 0 ?
-                                <div>
+                                <div className='mt-5'>
                                     <h5>Production Companies</h5>
                                     <div className='row '>
                                         {movie.production_companies.map((comp, index) => {

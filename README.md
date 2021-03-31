@@ -15,6 +15,11 @@ yarn start
 abra seu navegador na url [http://localhost:3000](http://localhost:3000) para visualizar o projeto.
 
 
+## Observações
+
+A votação por usuário temporário (Guest User) necessita habilitar o CORS para funcionar. 
+A API está bloqueando votos de fora/localhost.
+
 ### Tecnologias utilizadas no projeto
 
 Esse projeto foi desenvolvido com as seguintes tecnologias.

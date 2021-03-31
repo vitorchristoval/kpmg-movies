@@ -28,7 +28,7 @@ function Index(props) {
             value: value
         }
      
-        API.post(`movie/${props._id}/rating?api_key=${apiKey}&guest_session_id=${guest_session_id}`, body, { headers: { ContentType: 'application/json;charset=utf-8'} } )
+        API.post(`movie/${props._id}/rating?api_key=${apiKey}&guest_session_id=${guest_session_id}`, body, { headers: { ContentType: 'application/json;charset=utf-8', AccessControlAllowOrigin: '*'} } )
         .then(async response => {
             // If request is good...
             toast.success('Success...Your rating has been saved')
