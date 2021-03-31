@@ -12,8 +12,13 @@ body{
     background-color: #2e9c62;
   }
 }
+.nav-link {
+  margin-left: 10px;
+}
 
 @import '../components/Card/cards';
 @import '../components/Loading/loading';
+@import '../components/Header/header';
+@import '../components/LoadingMovies/loadingMovies';
 @import '../pages/Home/home';
 @import '../pages/Details/details';

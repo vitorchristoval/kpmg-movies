@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Rating from '../../components/Rating/Index';
+import WatchProviders from '../../components/WatchProviders/Index';
 import Loading from '../../components/Loading/Index';
 function Index(props) {
     const apiKey = '890580ebea281a7322da2043724cab0f'
@@ -11,7 +12,7 @@ function Index(props) {
     const [cast, setCast] = useState([]);
     const [loading, setLoading] = useState(true)
     const [_id, setId] = useState(props.match.params._id)
-
+    const [language, setLanguage] = useState(localStorage.getItem('language'))
 
     function timeConvert(n) {
         var num = n;
@@ -24,19 +25,18 @@ function Index(props) {
 
     useEffect(() => {
 
-        API.get(`movie/${_id}?api_key=${apiKey}&language=en-US`)
+        API.get(`movie/${_id}?api_key=${apiKey}&language=${language}`)
             .then(async response => {
                 // If request is good...
 
                 await setMovie(response.data)
 
 
-                API.get(`movie/${_id}/credits?api_key=${apiKey}&language=en-US`)
+                API.get(`movie/${_id}/credits?api_key=${apiKey}&language=${language}`)
                     .then(async response => {
                         // If request is good...
 
                         await setCast(response.data.cast)
-                        console.log(response.data)
                         await setLoading(false)
 
 
@@ -107,12 +107,12 @@ function Index(props) {
                         <div className='col-md-4 col-sm-12 poster'>
 
                             <img src={'https://image.tmdb.org/t/p/w500/' + movie.poster_path} />
-
+                            <WatchProviders movie_id={movie.id} />
                         </div>
                         <div className='col-md-8 col-sm-12'>
                             <h1>{movie.title} <small className='year'>({new Date(movie.release_date).getFullYear()})</small></h1>
                             <p>{movie.genres.map((g, i) => {
-                                return (<>{ g.name + ', '}</>)
+                                return (<>{g.name + ', '}</>)
                             })}{timeConvert(movie.runtime)}</p>
                             <div className='average'>
                                 <img src='/fav.png' height='40px' />{movie.vote_average * 10} %
@@ -126,7 +126,7 @@ function Index(props) {
                                 {cast.map((item, i) => {
                                     return (
                                         <div className='cast-item'>
-                                            <img src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} />
+                                            {item.profile_path ? <img src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} /> : <img src={'/fav.png'} />}
                                             <h6>{item.name}</h6>
                                             <small>{item.character}</small>
                                         </div>

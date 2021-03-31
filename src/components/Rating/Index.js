@@ -13,7 +13,6 @@ function Index(props) {
         API.get(`authentication/guest_session/new?api_key=${apiKey}`)
             .then(async response => {
                 // If request is good...
-                console.log(response.data)
                 setGuest(response.data.guest_session_id)
             })
             .catch((error) => {
@@ -28,11 +27,10 @@ function Index(props) {
         var body = {
             value: value
         }
-        console.log(body)
+     
         API.post(`movie/${props._id}/rating?api_key=${apiKey}&guest_session_id=${guest_session_id}`, body, { headers: { ContentType: 'application/json;charset=utf-8'} } )
         .then(async response => {
             // If request is good...
-            console.log(response.data)
             toast.success('Success...Your rating has been saved')
             
         })
